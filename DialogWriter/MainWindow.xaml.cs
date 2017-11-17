@@ -35,6 +35,8 @@ namespace DialogWriter
             dialogslist.ItemsSource = TDialogNode.dialognodes;
             App.normaltext = FindResource("NormalText") as Style;
             App.errortext = FindResource("ErrorText") as Style;
+            ListDataTemplateSelector.dialogtemplate = FindResource("DialogTemplate") as DataTemplate;
+            ListDataTemplateSelector.answertemplate = FindResource("AnswerTemplate") as DataTemplate;
         }
 
         private void AddDialog(object sender, RoutedEventArgs e)
@@ -46,8 +48,6 @@ namespace DialogWriter
 
         private void AddAnswer(object sender, RoutedEventArgs e)
         {
-            TDialogNode.dialognodes.Add(new TAnswer());
-
             var answer = new TAnswer();
             TDialogNode.dialognodes.Add(answer);
             TAnswer.answers.Add(answer);

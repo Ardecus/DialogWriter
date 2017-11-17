@@ -26,4 +26,15 @@ namespace DialogWriter
             }
         }
     }
+
+    public class ListDataTemplateSelector : DataTemplateSelector
+    {
+        public static DataTemplate dialogtemplate;
+        public static DataTemplate answertemplate;
+
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            return item is TDialog ? dialogtemplate : answertemplate;
+        }
+    }
 }
