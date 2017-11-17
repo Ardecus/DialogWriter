@@ -92,6 +92,11 @@ namespace DialogWriter
             var branch = button.DataContext as TDialogBranch;
             branch.flags.Add(branch.newflag);
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class ListDataTemplateSelector : DataTemplateSelector

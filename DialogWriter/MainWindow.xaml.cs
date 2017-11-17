@@ -37,6 +37,8 @@ namespace DialogWriter
                 MessageBox.Show("File name is not valid!");
             TDialog.SaveToFile(filename.Text);
             TAnswer.SaveToFile(filename.Text);
+
+            MessageBox.Show("Saved!");
         }
 
         private void Load(object sender, RoutedEventArgs e)

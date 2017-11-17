@@ -26,6 +26,7 @@ namespace DialogWriter
             using (StreamWriter sw = new StreamWriter(File.OpenWrite(filepath)))
             {
                 sw.Write(name);
+                sw.Write(" : ");
                 sw.WriteLine(begin);
                 var sb = new StringBuilder();
                 foreach (var answer in answers)
@@ -87,7 +88,7 @@ namespace DialogWriter
         public static void SaveToFile(string filepath)
         {
             int delim = filepath.IndexOf('\\');
-            string name = delim > 0 ? filepath.Substring(delim) : filepath;
+            string name = delim > 0 ? filepath.Substring(delim + 1) : filepath;
             SaveConfigToFile(filepath + "AnswerPrototype.cfg", name);
             SaveTextToFile(filepath + "AnswerText.cfg");
         }

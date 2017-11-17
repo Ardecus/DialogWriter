@@ -21,6 +21,20 @@
         <Style TargetType="Button">
             <Setter Property="Margin" Value="2" />
         </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="ContextMenu">
+                <Setter.Value>
+                    <ContextMenu>
+                        <MenuItem Header="Remove" Click="Remove"/>
+                    </ContextMenu>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Content" Value="{Binding Path=EventName}"/>
+        </Style>
         
         <DataTemplate x:Key="ActionTemplate">
             <Grid>
@@ -96,7 +110,7 @@
                 <TextBox x:Name="nextdialogsid" TextWrapping="Wrap" Text="{Binding nextdialogsid}" Grid.Column="1" Grid.Row="4" />
                 <Label Content="Flags: " Grid.ColumnSpan="2" Grid.Row="5" />
                 <ListBox ItemsSource="{Binding flags}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="6" />
-                <TextBox Text="{Binding newflag}" TextChanged="Validate" />
+                <TextBox Text="{Binding newflag}" TextChanged="Validate" Grid.Column="0" Grid.Row="7"  />
                 <Button Content="Add flag" Grid.Column="1" Grid.Row="7" Click="AddFlag" />
                 <Label Content="Actions: " Grid.ColumnSpan="2" Grid.Row="8" />
                 <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="9" >

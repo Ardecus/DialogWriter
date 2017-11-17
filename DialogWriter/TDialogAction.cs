@@ -23,10 +23,10 @@ namespace DialogWriter
         public int    param2  { get; set; }
         public int    param3  { get; set; }
         public int    param4  { get; set; }
-        public string sparam1 { get; set; }
-        public string sparam2 { get; set; }
-        public string sparam3 { get; set; }
-        public string sparam4 { get; set; }
+        public string sparam1 { get; set; } = string.Empty;
+        public string sparam2 { get; set; } = string.Empty;
+        public string sparam3 { get; set; } = string.Empty;
+        public string sparam4 { get; set; } = string.Empty;
 
         public string ToString(int spaces)
         {
@@ -41,23 +41,11 @@ namespace DialogWriter
             sb.Append("param2 = ");
             sb.AppendLine(param2.ToString());
             sb.Append(' ', spaces);
-            sb.Append("param3 = ");
-            sb.AppendLine(param3.ToString());
-            sb.Append(' ', spaces);
-            sb.Append("param4 = ");
-            sb.AppendLine(param4.ToString());
-            sb.Append(' ', spaces);
             sb.Append("sparam1 = ");
             sb.AppendLine(sparam1.ToString());
             sb.Append(' ', spaces);
             sb.Append("sparam2 = ");
-            sb.AppendLine(sparam2.ToString());
-            sb.Append(' ', spaces);
-            sb.Append("sparam3 = ");
-            sb.AppendLine(sparam3.ToString());
-            sb.Append(' ', spaces);
-            sb.Append("sparam4 = ");
-            sb.Append(sparam4.ToString());
+            sb.Append(sparam2.ToString());
             return sb.ToString();
         }
     }
