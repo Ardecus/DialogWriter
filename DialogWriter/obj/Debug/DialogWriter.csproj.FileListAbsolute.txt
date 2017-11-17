@@ -1,0 +1,17 @@
+D:\Test\DialogWriter\DialogWriter\bin\Debug\DialogWriter.exe.config
+D:\Test\DialogWriter\DialogWriter\bin\Debug\DialogWriter.exe
+D:\Test\DialogWriter\DialogWriter\bin\Debug\DialogWriter.pdb
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.csprojResolveAssemblyReference.cache
+D:\Test\DialogWriter\DialogWriter\obj\Debug\MainWindow.g.cs
+D:\Test\DialogWriter\DialogWriter\obj\Debug\App.g.cs
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter_MarkupCompile.cache
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter_MarkupCompile.lref
+D:\Test\DialogWriter\DialogWriter\obj\Debug\App.baml
+D:\Test\DialogWriter\DialogWriter\obj\Debug\MainWindow.baml
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.g.resources
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.Properties.Resources.resources
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.csproj.GenerateResource.Cache
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.csproj.CoreCompileInputs.cache
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.exe
+D:\Test\DialogWriter\DialogWriter\obj\Debug\DialogWriter.pdb
+D:\Test\DialogWriter\DialogWriter\obj\Debug\GeneratedInternalTypeHelper.g.cs
