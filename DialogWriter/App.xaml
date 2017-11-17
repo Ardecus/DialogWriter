@@ -18,7 +18,9 @@
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2" />
         </Style>
-        
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2" />
+        </Style>
         
         <DataTemplate x:Key="ActionTemplate">
             <Grid>
@@ -39,24 +41,70 @@
                 </Grid.RowDefinitions>
                 <Label Content="Action type" Grid.Column="0" Grid.Row="0" />
                 <ComboBox Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="0" 
-                        ItemsSource="{Binding Path=actions}" 
+                        ItemsSource="{Binding Source={x:Static local:App.actionoptions}}"
                         DisplayMemberPath="Value" 
                         SelectedValuePath="Key"
                         SelectedValue="{Binding Path=action, Mode=TwoWay}" />
                 <Label Content="Numeric params:" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" />
                 <Label Content="String params:" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"/>
-                <Button Content="Add" Grid.Column="0" Grid.Row="2" IsTabStop="False" />
-                <Button Content="Remove" Grid.Column="1" Grid.Row="2" Margin="0, 0, 5, 0" IsTabStop="False" />
-                <Button Content="Add" Grid.Column="2" Grid.Row="2" Margin="5, 0, 0, 0" IsTabStop="False" />
-                <Button Content="Remove" Grid.Column="3" Grid.Row="2" IsTabStop="False" />
+                <!--<Button Content="Add" Grid.Column="0" Grid.Row="2" IsTabStop="False" />
+                <Button Content="Remove" Grid.Column="1" Grid.Row="2" Margin="2, 2, 5, 2" IsTabStop="False" />
+                <Button Content="Add" Grid.Column="2" Grid.Row="2" Margin="5, 2, 2, 2" IsTabStop="False" />
+                <Button Content="Remove" Grid.Column="3" Grid.Row="2" IsTabStop="False" />-->
                 <TextBox Name="param1" Text="{Binding param1}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" TextChanged="Validate" />
-                <TextBox Name="param2" Text="{Binding param2}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4" Visibility="Collapsed" TextChanged="Validate" />
+                <TextBox Name="param2" Text="{Binding param2}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4" TextChanged="Validate" />
                 <TextBox Name="param3" Text="{Binding param3}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5" Visibility="Collapsed" TextChanged="Validate" />
                 <TextBox Name="param4" Text="{Binding param4}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6" Visibility="Collapsed" TextChanged="Validate" />
-                <TextBox Name="sparam1" Text="{Binding sparam1}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="3" Visibility="Collapsed" />
-                <TextBox Name="sparam2" Text="{Binding sparam2}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="4" Visibility="Collapsed" />
+                <TextBox Name="sparam1" Text="{Binding sparam1}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="3" />
+                <TextBox Name="sparam2" Text="{Binding sparam2}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="4" />
                 <TextBox Name="sparam3" Text="{Binding sparam3}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="5" Visibility="Collapsed" />
                 <TextBox Name="sparam4" Text="{Binding sparam4}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="6" Visibility="Collapsed" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BranchTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Base chance" Grid.Column="0" Grid.Row="0" />
+                <TextBox x:Name="basechance" TextWrapping="Wrap" Text="{Binding basechance}" Grid.Column="1" Grid.Row="0" TextChanged="ValidateFloat" IsTabStop="False" />
+                <Label Content="Skill" Grid.Column="0" Grid.Row="1" />
+                <TextBox x:Name="skill" TextWrapping="Wrap" Text="{Binding skill}" Grid.Column="1" Grid.Row="1" />
+                <Label Content="Attribute" Grid.Column="0" Grid.Row="2" />
+                <ComboBox Grid.Column="1" Grid.Row="2" 
+                        ItemsSource="{Binding Source={x:Static local:App.attributeoptions}}"
+                        DisplayMemberPath="Value" 
+                        SelectedValuePath="Key"
+                        SelectedValue="{Binding Path=attribute, Mode=TwoWay}" />
+                <Label Content="Attribute mod chance" Grid.Column="0" Grid.Row="3" />
+                <TextBox x:Name="attributemodchance" TextWrapping="Wrap" Text="{Binding attributemodchance}" Grid.Column="1" Grid.Row="3" TextChanged="ValidateFloat" />
+                <Label Content="Next dialog sid" Grid.Column="0" Grid.Row="4" />
+                <TextBox x:Name="nextdialogsid" TextWrapping="Wrap" Text="{Binding nextdialogsid}" Grid.Column="1" Grid.Row="4" />
+                <Label Content="Flags: " Grid.ColumnSpan="2" Grid.Row="5" />
+                <ListBox ItemsSource="{Binding flags}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="6" />
+                <TextBox Text="{Binding newflag}" TextChanged="Validate" />
+                <Button Content="Add flag" Grid.Column="1" Grid.Row="7" Click="AddFlag" />
+                <Label Content="Actions: " Grid.ColumnSpan="2" Grid.Row="8" />
+                <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="9" >
+                    <StackPanel>
+                        <ListBox ItemsSource="{Binding actions}"  ItemTemplate="{StaticResource ActionTemplate}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                        <Button Content="Add action" Click="AddBranchAction" />
+                    </StackPanel>
+                </Border>
             </Grid>
         </DataTemplate>
 
@@ -94,13 +142,15 @@
                     <Label Content="On-start actions: " Grid.ColumnSpan="2" Grid.Row="6" />
                     <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="7" >
                         <StackPanel>
-                            <Button Content="Add action" />
+                            <ListBox ItemsSource="{Binding actions}"  ItemTemplate="{StaticResource ActionTemplate}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                            <Button Tag="{Binding buttonactionid}" Content="Add action" Click="AddAction" />
                         </StackPanel>
                     </Border>
                     <Label Content="On-start dialog branches: " Grid.ColumnSpan="2" Grid.Row="8" />
                     <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="9" >
                         <StackPanel>
-                            <Button Content="Add branch" />
+                            <ListBox ItemsSource="{Binding branches}"  ItemTemplate="{StaticResource BranchTemplate}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                            <Button Tag="{Binding buttonbranchid}" Content="Add branch" Click="AddBranch" />
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -111,6 +161,9 @@
             <Border Margin="15" BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5"  HorizontalAlignment="Stretch">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -134,26 +187,34 @@
                     <TextBox x:Name="sid" TextWrapping="Wrap" Text="{Binding sid}" Grid.Column="1" Grid.Row="1" />
                     <Label Content="Sound" Grid.Column="0" Grid.Row="2" />
                     <TextBox x:Name="sound" TextWrapping="Wrap" Text="{Binding sound}" Grid.Column="1" Grid.Row="2" />
-                    <Label Content="Next dialog" Grid.Column="0" Grid.Row="3" />
-                    <TextBox x:Name="nextdialogsid" TextWrapping="Wrap" Text="{Binding nextdialogsid}" Grid.Column="1" Grid.Row="3" />
-                    <Label Content="Hint id" Grid.Column="0" Grid.Row="4" />
-                    <TextBox x:Name="hintid" TextWrapping="Wrap" Text="{Binding hintid}" Grid.Column="1" Grid.Row="4" />
-                    <Label Content="Hint" Grid.Column="0" Grid.Row="5" />
-                    <TextBox x:Name="hint" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding hint}" Height="Auto" Grid.Column="1" Grid.Row="5" />
-                    <Label Content="Text id" Grid.Column="0" Grid.Row="6" />
-                    <TextBox x:Name="textid" TextWrapping="Wrap" Text="{Binding textid}" Grid.Column="1" Grid.Row="6" />
-                    <Label Content="Text" Grid.Column="0" Grid.Row="7" />
-                    <TextBox x:Name="text" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding text}" Height="Auto" Grid.Column="1" Grid.Row="7" />
-                    <Label Content="Actions: " Grid.ColumnSpan="2" Grid.Row="8" />
-                    <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="9" >
+                    <Label Content="Image" Grid.Column="0" Grid.Row="3" />
+                    <TextBox x:Name="image" TextWrapping="Wrap" Text="{Binding image}" Grid.Column="1" Grid.Row="3" />
+                    <Label Content="Req skill sid" Grid.Column="0" Grid.Row="4" />
+                    <TextBox x:Name="reqskillsid" TextWrapping="Wrap" Text="{Binding reqskillsid}" Grid.Column="1" Grid.Row="4" />
+                    <Label Content="Req skill value" Grid.Column="0" Grid.Row="5" />
+                    <TextBox x:Name="reqskillvalue" TextWrapping="Wrap" Text="{Binding reqskillvalue}" Grid.Column="1" Grid.Row="5" TextChanged="Validate" />
+                    <Label Content="Req attribute sid" Grid.Column="0" Grid.Row="6" />
+                    <TextBox x:Name="reqattributesid" TextWrapping="Wrap" Text="{Binding reqattributesid}" Grid.Column="1" Grid.Row="6" />
+                    <Label Content="Req attribute value" Grid.Column="0" Grid.Row="7" />
+                    <TextBox x:Name="reqattributevalue" TextWrapping="Wrap" Text="{Binding reqattributevalue}" Grid.Column="1" Grid.Row="7" TextChanged="Validate" />
+                    <Label Content="Next dialog" Grid.Column="0" Grid.Row="8" />
+                    <TextBox x:Name="nextdialogsid" TextWrapping="Wrap" Text="{Binding nextdialogsid}" Grid.Column="1" Grid.Row="8" />
+                    <Label Content="Text id" Grid.Column="0" Grid.Row="9" />
+                    <TextBox x:Name="textid" TextWrapping="Wrap" Text="{Binding textid}" Grid.Column="1" Grid.Row="9" />
+                    <Label Content="Text" Grid.Column="0" Grid.Row="10" />
+                    <TextBox x:Name="text" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding text}" Height="Auto" Grid.Column="1" Grid.Row="10" />
+                    <Label Content="Actions: " Grid.ColumnSpan="2" Grid.Row="11" />
+                    <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="12" >
                         <StackPanel>
-                            <Button Content="Add action" />
+                            <ListBox ItemsSource="{Binding actions}"  ItemTemplate="{StaticResource ActionTemplate}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                            <Button Tag="{Binding buttonactionid}" Content="Add action" Click="AddAction" />
                         </StackPanel>
                     </Border>
-                    <Label Content="Dialog branches: " Grid.ColumnSpan="2" Grid.Row="10" />
-                    <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="11" >
+                    <Label Content="Dialog branches: " Grid.ColumnSpan="2" Grid.Row="13" />
+                    <Border Margin="15" Grid.ColumnSpan="2" Grid.Row="14" >
                         <StackPanel>
-                            <Button Content="Add branch" />
+                            <ListBox ItemsSource="{Binding branches}"  ItemTemplate="{StaticResource BranchTemplate}"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                            <Button Tag="{Binding buttonbranchid}" Content="Add branch" Click="AddBranch" />
                         </StackPanel>
                     </Border>
                 </Grid>

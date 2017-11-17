@@ -17,8 +17,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Stretch">
-            <MenuItem Header="Load from file" />
-            <MenuItem Header="Save to file" />
+            <MenuItem Header="Load from files" Click="Load" />
+            <MenuItem Header="Save to files" Click="Save" />
+            <Label Content="Files name template:" Margin="-4" FontSize="12"/>
+            <TextBox x:Name="filename" Width="150" MinWidth="25"/>
         </Menu>
         <ScrollViewer Grid.ColumnSpan="2" Grid.Row="1">
             <ListBox x:Name="dialogslist" ItemsSource="{Binding dialognodes}" ItemTemplateSelector="{StaticResource TemplateSelector}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="0" />

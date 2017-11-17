@@ -1,34 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
 using System.Windows;
 
 namespace DialogWriter
 {
     public partial class MainWindow : Window
     {
-        public Dictionary<EDialogAction, string> actions { get; set; } = new Dictionary<EDialogAction, string>(){
+        string lastpath = string.Empty;
 
-            {EDialogAction.Gold, "Gold"},
-            {EDialogAction.Exp, "Exp"},
-            {EDialogAction.SkillPoints, "SkillPoints"},
-            {EDialogAction.Alignment, "Alignment"},
-            {EDialogAction.AddItem, "AddItem"},
-            {EDialogAction.RemoveItem, "RemoveItem"},
-            {EDialogAction.ActivateUsableByStringTag, "ActivateUsableByStringTag"}
-        };
-
-        public Dictionary<EStatAttribute, string> attributes { get; set; } = new Dictionary<EStatAttribute, string>(){
-
-            {EStatAttribute.ST, "ST"},
-            {EStatAttribute.DX, "DX"},
-            {EStatAttribute.IQ, "IQ"},
-            {EStatAttribute.HT, "HT"},
-            {EStatAttribute.HP, "HP"},
-            {EStatAttribute.PE, "PE"},
-            {EStatAttribute.WP, "WP"},
-            {EStatAttribute.FP, "FP"},
-            {EStatAttribute.MP, "MP"}
-        };
-        
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +29,18 @@ namespace DialogWriter
             var answer = new TAnswer();
             TDialogNode.dialognodes.Add(answer);
             TAnswer.answers.Add(answer);
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            if (filename.Text==string.Empty||!Directory.Exists(filename.Text.Substring(0, filename.Text.LastIndexOf('\\'))))
+                MessageBox.Show("File name is not valid!");
+            TDialog.SaveToFile(filename.Text);
+            TAnswer.SaveToFile(filename.Text);
+        }
+
+        private void Load(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
